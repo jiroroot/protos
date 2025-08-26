@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "next lint",
+    "deploy": "npm run lint && npm run build && git add . && git commit -m \"Auto-deploy: $(date)\" && git push origin main",
+    "quick-deploy": "git add . && git commit -m \"Quick deploy\" && git push origin main",
+    "sync": "git pull origin main && git push origin main",
+    "fix-deploy": "npm run lint && git add . && git commit -m \"Fix build issues\" && git push origin main --force-with-lease"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.12",
