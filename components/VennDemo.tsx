@@ -32,13 +32,6 @@ export function VennDemo() {
 
   return (
     <div className="space-y-6">
-      <div className="text-center">
-        <h2 className="text-3xl font-bold text-gray-900 mb-2">Elegant Venn Diagram</h2>
-        <p className="text-gray-600 max-w-2xl mx-auto">
-          A beautiful, simple Venn diagram component with perfect 4:3 aspect ratio. 
-          Clean, elegant design that fits perfectly in any card layout.
-        </p>
-      </div>
 
       {/* Venn Diagram Display */}
       <Card className="overflow-hidden border-0 shadow-lg">
