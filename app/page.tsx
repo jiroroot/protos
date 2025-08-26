@@ -6,6 +6,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import { ChartDemo } from "@/components/ChartDemo"
+import { VennDemo } from "@/components/VennDemo"
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
             </div>
             <nav className="hidden md:flex items-center space-x-8">
               <a href="#features" className="text-gray-600 hover:text-gray-900 transition-colors">Features</a>
+              <a href="/components" className="text-gray-600 hover:text-gray-900 transition-colors">Components</a>
               <a href="#about" className="text-gray-600 hover:text-gray-900 transition-colors">About</a>
               <a href="#contact" className="text-gray-600 hover:text-gray-900 transition-colors">Contact</a>
             </nav>
@@ -132,6 +134,11 @@ export default function Home() {
           {/* Chart Section */}
           <div className="max-w-4xl mx-auto">
             <ChartDemo />
+          </div>
+
+          {/* Venn Diagram Section */}
+          <div className="max-w-4xl mx-auto mt-16">
+            <VennDemo />
           </div>
         </div>
       </section>
