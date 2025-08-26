@@ -1,14 +1,15 @@
 import { ArrowRight, Code, Zap, Shield, Globe, Star, Users, Rocket } from "lucide-react"
 import {
   Accordion,
-  AccordionContent,
   AccordionItem,
   AccordionTrigger,
+  AccordionContent,
 } from "@/components/ui/accordion"
 import { ChartDemo } from "@/components/ChartDemo"
 import { VennDemo } from "@/components/VennDemo"
 
 export default function Home() {
+  // Test comment for Git workflow
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
       {/* Header */}
@@ -79,7 +80,7 @@ export default function Home() {
                     </p>
                   </AccordionContent>
                 </AccordionItem>
-                
+
                 <AccordionItem value="item-2">
                   <AccordionTrigger className="text-left">
                     <div className="flex items-center space-x-3">
@@ -95,7 +96,7 @@ export default function Home() {
                     </p>
                   </AccordionContent>
                 </AccordionItem>
-                
+
                 <AccordionItem value="item-3">
                   <AccordionTrigger className="text-left">
                     <div className="flex items-center space-x-3">
@@ -111,7 +112,7 @@ export default function Home() {
                     </p>
                   </AccordionContent>
                 </AccordionItem>
-                
+
                 <AccordionItem value="item-4">
                   <AccordionTrigger className="text-left">
                     <div className="flex items-center space-x-3">
