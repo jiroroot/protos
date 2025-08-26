@@ -26,7 +26,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
-import { IconCheck, IconX } from "@tabler/icons-react"
+import { IconCheck } from "@tabler/icons-react"
 
 import data from "./data.json"
 
@@ -378,7 +378,7 @@ export default function ComponentsPage() {
                 <section className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl p-8 text-center text-white">
                   <h2 className="text-2xl font-bold mb-4">Amazing Progress! 🎉</h2>
                   <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-                    We've added DataTable, Dialog, Drawer, and Label components! Your showcase now has 
+                    We&apos;ve added DataTable, Dialog, Drawer, and Label components! Your showcase now has 
                     <strong> 10 fully functional components</strong> plus working placeholders!
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -67,7 +67,7 @@ export function VennDemo() {
               <label className="text-sm font-medium text-gray-700">Size</label>
               <select
                 value={size}
-                onChange={(e) => setSize(e.target.value as any)}
+                onChange={(e) => setSize(e.target.value as "sm" | "md" | "lg" | "xl" | "2xl")}
                 className="w-full mt-1 px-3 py-2 border border-gray-200 rounded-lg bg-white/80 backdrop-blur-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
                 <option value="sm">Small</option>
@@ -82,7 +82,7 @@ export function VennDemo() {
               <label className="text-sm font-medium text-gray-700">Theme</label>
               <select
                 value={theme}
-                onChange={(e) => setTheme(e.target.value as any)}
+                onChange={(e) => setTheme(e.target.value as "default" | "blue" | "green" | "purple" | "orange")}
                 className="w-full mt-1 px-3 py-2 border border-gray-200 rounded-lg bg-white/80 backdrop-blur-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
                 <option value="default">Default</option>

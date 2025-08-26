@@ -61,7 +61,6 @@ const VennDiagram = React.forwardRef<HTMLDivElement, VennDiagramProps>(
     // Use black and white for classic contrast
     const primaryColor = data.setA.color || "#000000" // Black
     const secondaryColor = data.setB.color || "rgba(255,255,255,0.6)" // Semi-transparent white
-    const overlapColor = data.intersection.color || "#808080" // Gray for overlap
 
     return (
       <div
@@ -74,8 +73,7 @@ const VennDiagram = React.forwardRef<HTMLDivElement, VennDiagramProps>(
           <div
             className={cn(
               "absolute rounded-full transition-all duration-500 ease-out",
-              animated && "hover:scale-105 hover:shadow-lg",
-              "flex items-center justify-center"
+              animated && "hover:scale-105 hover:shadow-lg"
             )}
             style={{
               border: `4px solid ${primaryColor}`,
@@ -86,15 +84,13 @@ const VennDiagram = React.forwardRef<HTMLDivElement, VennDiagramProps>(
               top: "30%",
               boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
             }}
-          >
-          </div>
+          />
 
           {/* Set B Circle - White */}
           <div
             className={cn(
               "absolute rounded-full transition-all duration-500 ease-out",
-              animated && "hover:scale-105 hover:shadow-lg",
-              "flex items-center justify-center"
+              animated && "hover:scale-105 hover:shadow-lg"
             )}
             style={{
               border: `4px solid ${primaryColor}`, // Black border for contrast
@@ -105,8 +101,7 @@ const VennDiagram = React.forwardRef<HTMLDivElement, VennDiagramProps>(
               top: "27%",
               boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
             }}
-          >
-          </div>
+          />
 
           {/* Intersection Label - Positioned in the center overlap */}
           {showCounts && (

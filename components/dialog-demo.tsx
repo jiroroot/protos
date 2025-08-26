@@ -29,7 +29,7 @@ export function DialogDemo() {
         <DialogHeader>
           <DialogTitle>Add New Project</DialogTitle>
           <DialogDescription>
-            Create a new project entry. Fill in the details below and click save when you're done.
+            Create a new project entry. Fill in the details below and click save when you&apos;re done.
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
