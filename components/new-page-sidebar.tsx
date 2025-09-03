@@ -2,181 +2,104 @@
 
 import * as React from "react"
 import Link from "next/link"
-import {
-  IconChartBar,
-  IconDashboard,
-  IconDatabase,
-  IconFileAi,
-  IconFileWord,
-  IconFolder,
-  IconHelp,
-  IconInnerShadowTop,
-  IconListDetails,
-  IconSettings,
-  IconUsers,
-} from "@tabler/icons-react"
+import { 
+  Home, 
+  Megaphone, 
+  Trophy, 
+  Wrench, 
+  CreditCard, 
+  Settings,
+  Menu,
+} from "lucide-react"
 
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 
-const data = {
-  user: {
-    name: "User Name",
-    email: "user@example.com",
-    avatar: "/avatars/protos.jpg",
+const navItems = [
+  {
+    title: "Home",
+    url: "/new-page",
+    icon: Home,
+    active: true,
   },
-  navMain: [
-    {
-      title: "Link 1",
-      url: "#",
-      icon: IconDashboard,
-    },
-    {
-      title: "Link 2",
-      url: "#",
-      icon: IconListDetails,
-    },
-    {
-      title: "Link 3",
-      url: "#",
-      icon: IconChartBar,
-    },
-    {
-      title: "Link 4",
-      url: "#",
-      icon: IconFolder,
-    },
-    {
-      title: "Link 5",
-      url: "#",
-      icon: IconUsers,
-    },
-  ],
-  navSecondary: [
-    {
-      title: "Help",
-      url: "#",
-      icon: IconHelp,
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: IconSettings,
-    },
-  ],
-  documents: [
-    {
-      title: "Document A",
-      url: "#",
-      icon: IconFileAi,
-    },
-    {
-      title: "Document B",
-      url: "#",
-      icon: IconFileAi,
-    },
-    {
-      title: "Document C",
-      url: "#",
-      icon: IconFileAi,
-    },
-  ],
-}
+  {
+    title: "Campaigns",
+    url: "#",
+    icon: Megaphone,
+    active: false,
+  },
+  {
+    title: "Goals",
+    url: "#",
+    icon: Trophy,
+    active: false,
+  },
+  {
+    title: "Tools",
+    url: "#",
+    icon: Wrench,
+    active: false,
+  },
+  {
+    title: "Billing",
+    url: "#",
+    icon: CreditCard,
+    active: false,
+  },
+  {
+    title: "Admin",
+    url: "#",
+    icon: Settings,
+    active: false,
+  },
+]
 
 export function NewPageSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar collapsible="offcanvas" {...props}>
-      <SidebarHeader>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton
-              asChild
-              className="data-[slot=sidebar-menu-button]:!p-1.5"
-            >
-              <Link href="/">
-                <IconInnerShadowTop className="!size-5" />
-                <span className="text-base font-semibold">Company Name</span>
-              </Link>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
-      </SidebarHeader>
-      <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel>Section 1</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {data.navMain.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <Link href={item.url}>
-                      <item.icon className="size-4" />
-                      <span>{item.title}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-
-        <SidebarGroup>
-          <SidebarGroupLabel>Section 2</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {data.documents.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <Link href={item.url}>
-                      <item.icon className="size-4" />
-                      <span>{item.title}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-
-        <SidebarGroup className="mt-auto">
-          <SidebarGroupLabel>System</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {data.navSecondary.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <Link href={item.url}>
-                      <item.icon className="size-4" />
-                      <span>{item.title}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-      </SidebarContent>
-      <SidebarFooter>
-        <div className="flex items-center gap-2 p-2">
-          <div className="h-8 w-8 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white text-sm font-semibold">
-            U
-          </div>
-          <div className="flex flex-col">
-            <span className="text-sm font-medium">{data.user.name}</span>
-            <span className="text-xs text-muted-foreground">{data.user.email}</span>
+    <Sidebar collapsible="offcanvas" {...props} className="w-16">
+      <SidebarHeader className="p-2">
+        {/* Logo */}
+        <div className="flex justify-center mb-4">
+          <div className="w-8 h-8 flex items-center justify-center">
+            <img 
+              src="/assets/google-ads-logo.png" 
+              alt="Google Ads" 
+              className="w-6 h-6"
+            />
           </div>
         </div>
-      </SidebarFooter>
+
+        {/* Hamburger Menu */}
+        <div className="flex justify-center mb-4">
+          <Menu className="h-5 w-5 text-gray-700" />
+        </div>
+      </SidebarHeader>
+
+      <SidebarContent className="px-2">
+        <SidebarMenu>
+          {navItems.map((item) => (
+            <SidebarMenuItem key={item.title}>
+              <SidebarMenuButton 
+                asChild 
+                className={`mb-1 ${item.active ? 'bg-blue-100 rounded-lg' : ''}`}
+              >
+                <Link href={item.url} className="flex flex-col items-center py-2">
+                  <item.icon className={`h-5 w-5 mb-1 ${item.active ? 'text-gray-800' : 'text-gray-600'}`} />
+                  <span className={`text-xs ${item.active ? 'text-gray-800 font-medium' : 'text-gray-600'}`}>
+                    {item.title}
+                  </span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          ))}
+        </SidebarMenu>
+      </SidebarContent>
     </Sidebar>
   )
 }
