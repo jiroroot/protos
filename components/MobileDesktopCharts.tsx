@@ -139,9 +139,9 @@ export function MobileDesktopCharts() {
     <Card className="pt-0 overflow-visible">
       <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
         <div className="grid flex-1 gap-1">
-          <CardTitle>Mobile vs Desktop Traffic</CardTitle>
+          <CardTitle>Marketing Cycle</CardTitle>
           <CardDescription>
-            Comparing mobile and desktop traffic over time
+            Time series chart
           </CardDescription>
         </div>
         <Select value={timeRange} onValueChange={setTimeRange}>
@@ -164,6 +164,31 @@ export function MobileDesktopCharts() {
           </SelectContent>
         </Select>
       </CardHeader>
+      
+      {/* Action Buttons */}
+      <div className="px-6 py-4 border-b">
+        <div className="flex flex-wrap gap-3">
+          <button className="flex items-center gap-2 px-4 py-2 text-sm text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+            How can I increase reach?
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+          <button className="flex items-center gap-2 px-4 py-2 text-sm text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+            Why did my conversions drop in the last week?
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+          <button className="flex items-center gap-2 px-4 py-2 text-sm text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+            What's impacting LTV?
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      
       <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">
         <div className="flex gap-6">
           {/* Left Content - Marketing Funnel Stages */}
