@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import { NewPageSidebar } from "@/components/new-page-sidebar"
 import { SiteHeader } from "@/components/site-header"
@@ -6,7 +6,7 @@ import {
   SidebarInset,
   SidebarProvider,
 } from "@/components/ui/sidebar"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { ChartDemo } from "@/components/ChartDemo"
 
 export default function NewPage() {
   return (
@@ -39,15 +39,7 @@ export default function NewPage() {
 
               {/* Content Section */}
               <div className="px-4 lg:px-6">
-                 <Card>
-                  <CardHeader>
-                    <CardTitle>Content Area</CardTitle>
-                    <CardDescription>This is where your main content will go.</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <p>You can start building your page here by editing <code>app/new-page/page.tsx</code>.</p>
-                  </CardContent>
-                </Card>
+                 <ChartDemo />
               </div>
 
             </div>
