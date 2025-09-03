@@ -6,7 +6,7 @@ import {
   SidebarInset,
   SidebarProvider,
 } from "@/components/ui/sidebar"
-import { ChartDemo } from "@/components/ChartDemo"
+import { MobileDesktopCharts } from "@/components/MobileDesktopCharts"
 
 export default function NewPage() {
   return (
@@ -29,17 +29,17 @@ export default function NewPage() {
               <div className="px-4 lg:px-6">
                 <div className="text-center">
                   <h1 className="text-4xl font-bold text-gray-900 mb-4">
-                    New Page Title
+                    Marketing Analytics Dashboard
                   </h1>
                   <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                    This is a placeholder for the new page's subtitle or description.
+                    Track your marketing cycle performance across reach, inform, convert, and retain stages.
                   </p>
                 </div>
               </div>
 
               {/* Content Section */}
               <div className="px-4 lg:px-6">
-                 <ChartDemo />
+                 <MobileDesktopCharts />
               </div>
 
             </div>
