@@ -101,337 +101,196 @@
         const PieChart = ({ className = "" }) => <i className={`fa-solid fa-chart-pie ${className}`}></i>;
 
 
-        // --- Configurations ---
-
-        // 1. CONFIG_FRUITS (Corresponds to "No" Fidelity)
-        const CONFIG_FRUITS = {
+        // =====================================================
+        // LAYOUT: Structure only - edit here to move rows/cols
+        // =====================================================
+        const LAYOUT = {
             sections: [
                 {
                     id: "S1",
-                    title: "Apple",
-                    description: "Crisp",
                     rows: [
-                        {
-                            id: "R1",
-                            hasDetails: true,
-                            cols: [
-                                { span: 8, id: "C1", title: "Banana", description: "Yellow", widget: "sankey" },
-                                {
-                                    span: 2,
-                                    id: "C2",
-                                    title: "Guava",
-                                    description: "Tropical",
-                                    widget: "scorecard-3up",
-                                    metrics: [
-                                        { title: "Huckleberry", description: "Blue", value: "456", change: "+8.2%" },
-                                        { title: "Jackfruit", description: "Large", value: "789", change: "+3.1%" },
-                                        { title: "Kiwi", description: "Fuzzy", value: "101", change: null },
-                                    ]
-                                },
-                                {
-                                    span: 2,
-                                    id: "C3",
-                                    title: "Cranberry",
-                                    description: "Crimson",
-                                    widget: "scorecard-3up",
-                                    metrics: [
-                                        { title: "Durian", description: "Spiky", value: "123", change: "+1.2%" },
-                                        { title: "Eggplant", description: "Purple veg", value: "1,234", change: "-5.1%" },
-                                        { title: "Fig", description: "Sweet", value: "12,345", change: null },
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            id: "R0",
-                            hasDetails: true,
-                            cols: [
-                                { span: 4, id: "C1", title: "Apricot", description: "Stone fruit", widget: "donut" },
-                                { span: 4, id: "C2", title: "Blueberry", description: "Small berry", widget: "donut" },
-                                { span: 4, id: "C3", title: "Cherry", description: "Red stone", widget: "donut" }
-                            ]
-                        },
-                        {
-                            id: "R2",
-                            hasDetails: true,
-                            cols: [
-                                {
-                                    span: 4,
-                                    id: "C1",
-                                    title: "Grape",
-                                    description: "",
-                                    widget: "scorecard-horizontal",
-                                    metrics: [
-                                        { title: "Jicama", description: "Crunchy root", value: "12,345", change: "+2.4%" },
-                                        { title: "Kumquat", description: "Small citrus", value: "12,345", change: "+2.4%" }
-                                    ]
-                                },
-                                {
-                                    span: 4,
-                                    id: "C2",
-                                    title: "Honeydew",
-                                    description: "",
-                                    widget: "scorecard-horizontal",
-                                    metrics: [
-                                        { title: "Lychee", description: "White fruit", value: "12,345", change: "+2.4%" },
-                                        { title: "Mulberry", description: "Dark berry", value: "12,345", change: "+2.4%" }
-                                    ]
-                                },
-                                {
-                                    span: 4,
-                                    id: "C3",
-                                    title: "Imli",
-                                    description: "",
-                                    widget: "scorecard-horizontal",
-                                    metrics: [
-                                        { title: "Nectarine", description: "Smooth skin", value: "12,345", change: "+2.4%" },
-                                        { title: "Olive", description: "Salty fruit", value: "12,345", change: "+2.4%" }
-                                    ]
-                                }
-                            ]
-                        }
+                        { id: "R1", hasDetails: true, cols: [
+                            { span: 8, id: "C1", widget: "sankey" },
+                            { span: 2, id: "C2", widget: "scorecard-3up", metricCount: 3 },
+                            { span: 2, id: "C3", widget: "scorecard-3up", metricCount: 3 }
+                        ]},
+                        { id: "R0", hasDetails: true, cols: [
+                            { span: 4, id: "C1", widget: "donut" },
+                            { span: 4, id: "C2", widget: "donut" },
+                            { span: 4, id: "C3", widget: "donut" }
+                        ]},
+                        { id: "R2", hasDetails: true, cols: [
+                            { span: 4, id: "C1", widget: "scorecard-horizontal", metricCount: 2 },
+                            { span: 4, id: "C2", widget: "scorecard-horizontal", metricCount: 2 },
+                            { span: 4, id: "C3", widget: "scorecard-horizontal", metricCount: 2 }
+                        ]}
                     ]
                 },
                 {
                     id: "S2",
-                    title: "Almond Joy",
-                    description: "Almonds & coconut",
                     rows: [
-                        {
-                            id: "R1",
-                            hasDetails: true,
-                            cols: [
-                                { span: 6, id: "C1", title: "Butterfinger", description: "Crisp bar", widget: "time-series" },
-                                { span: 6, id: "C2", title: "Candy Cane", description: "Mint stick", widget: "time-series" }
-                            ]
-                        }
+                        { id: "R1", hasDetails: true, cols: [
+                            { span: 6, id: "C1", widget: "time-series" },
+                            { span: 6, id: "C2", widget: "time-series" }
+                        ]}
                     ]
                 },
                 {
                     id: "S3",
-                    title: "Agua Fresca",
-                    description: "Refreshing beverages",
                     rows: [
-                        {
-                            id: "R1",
-                            hasDetails: true,
-                            cols: [
-                                { span: 10, id: "C1", title: "Bellini", description: "Peach cocktail", widget: "sankey" },
-                                {
-                                    span: 2,
-                                    id: "C2",
-                                    title: "Cider",
-                                    description: "Apple brew",
-                                    widget: "scorecard-3up",
-                                    metrics: [
-                                        { title: "Daiquiri", description: "Rum mix", value: "800", change: "-0.5%" },
-                                        { title: "Espresso", description: "Dark shot", value: "1,500", change: "+1.0%" },
-                                        { title: "Fanta", description: "Orange fizz", value: "100", change: null },
-                                    ]
-                                }
-                            ]
-                        },
+                        { id: "R1", hasDetails: true, cols: [
+                            { span: 10, id: "C1", widget: "sankey" },
+                            { span: 2, id: "C2", widget: "scorecard-3up", metricCount: 3 }
+                        ]}
                     ]
                 },
                 {
                     id: "S4",
-                    title: "Anchovies",
-                    description: "Prepared dishes",
                     rows: [
-                        {
-                            id: "R1",
-                            hasDetails: true,
-                            cols: [
-                                { span: 4, id: "C1", title: "Buñuelos", description: "Sweet fritter", widget: "venn" },
-                                { span: 8, id: "C2", title: "Calzone", description: "Folded pizza", widget: "cta" }
-                            ]
-                        }
+                        { id: "R1", hasDetails: true, cols: [
+                            { span: 4, id: "C1", widget: "venn" },
+                            { span: 8, id: "C2", widget: "cta" }
+                        ]}
                     ]
                 },
                 {
                     id: "S5",
-                    title: "Avocado",
-                    description: "Green goodness",
                     rows: [
-                        {
-                            id: "R1",
-                            hasDetails: true,
-                            cols: [
-                                { span: 6, id: "C1", title: "Engagement", description: "User actions", widget: "time-series" },
-                                { span: 6, id: "C2", title: "Sentiment", description: "Brand love", widget: "time-series" }
-                            ]
-                        }
+                        { id: "R1", hasDetails: true, cols: [
+                            { span: 6, id: "C1", widget: "time-series" },
+                            { span: 6, id: "C2", widget: "time-series" }
+                        ]}
                     ]
                 }
             ]
         };
 
-        // 2. CONFIG_REALISTIC (Corresponds to "Low" and "High" Fidelity)
-        const CONFIG_REALISTIC = {
-            sections: [
-                {
-                    id: "S1",
-                    title: "Return on investment",
-                    description: "See how your ads improve long term business outcomes",
-                    rows: [
-                        {
-                            id: "R0", // New Top Row
-                            hasDetails: true,
-                            cols: [
-                                { span: 4, id: "C1", title: "Device Mix", description: "Traffic by device", widget: "donut" },
-                                { span: 4, id: "C2", title: "New vs Returning", description: "User type split", widget: "donut" },
-                                { span: 4, id: "C3", title: "Top Locations", description: "Geo distribution", widget: "donut" }
-                            ]
-                        },
-                        {
-                            id: "R1",
-                            hasDetails: true,
-                            cols: [
-                                // Span 8 for Sankey
-                                { span: 8, id: "C1", title: "Ad reach per customer journey", description: "See how your ads reached each stage of the customer journey to influence brand perception and improve long term ROI", widget: "sankey" },
-                                // Span 2 for Journeys
-                                {
-                                    span: 2,
-                                    id: "C2",
-                                    title: "Outcome",
-                                    description: "Qualified (likely) long term conversions",
-                                    caption: "Qualified long term conv.",
-                                    widget: "scorecard-3up",
-                                    metrics: [
-                                        { title: "Aware", description: "Qualified long term conv.", value: "+15%", change: "+2.0%" },
-                                        { title: "Considering", description: "Qualified long term conv.", value: "+8%", change: "+1.1%" },
-                                        { title: "Action", description: "Qualified long term conv.", value: "64%", change: null },
-                                    ]
-                                },
-                                // Span 2 for Value
-                                {
-                                    span: 2,
-                                    id: "C3",
-                                    title: "Journeys",
-                                    description: "Ad influences on customer journeys",
-                                    caption: "Unique reach",
-                                    widget: "scorecard-3up",
-                                    metrics: [
-                                        { title: "Aware", description: "Unique Reach", value: "12,864", change: "+3.2%" },
-                                        { title: "Considering", description: "Engaged Users", value: "6,282", change: "-1.5%" },
-                                        { title: "Action", description: "Conversions", value: "2,884", change: null },
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            id: "R2",
-                            hasDetails: true,
-                            cols: [
-                                {
-                                    span: 4,
-                                    id: "C1",
-                                    title: "Awareness",
-                                    description: "",
-                                    widget: "scorecard-horizontal",
-                                    metrics: [
-                                        { title: "Impressions", description: "Total views", value: "1.2M", change: "+5.4%" },
-                                        { title: "Unique Users", description: "Distinct people", value: "850K", change: "+2.1%" }
-                                    ]
-                                },
-                                {
-                                    span: 4,
-                                    id: "C2",
-                                    title: "Consideration",
-                                    description: "",
-                                    widget: "scorecard-horizontal",
-                                    metrics: [
-                                        { title: "Views", description: "Video/Display", value: "450K", change: "+8.2%" },
-                                        { title: "Branded Searches", description: "Intent", value: "125K", change: "+1.1%" }
-                                    ]
-                                },
-                                {
-                                    span: 4,
-                                    id: "C3",
-                                    title: "Action",
-                                    description: "",
-                                    widget: "scorecard-horizontal",
-                                    metrics: [
-                                        { title: "Conversions", description: "Sales/Leads", value: "12,345", change: "+12.5%" },
-                                        { title: "View-through Conv.", description: "Assisted", value: "3,210", change: "+4.3%" }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: "S2",
-                    title: "Campaign Performance",
-                    description: "Trends over time",
-                    rows: [
-                        {
-                            id: "R1",
-                            hasDetails: true,
-                            cols: [
-                                { span: 6, id: "C1", title: "Clicks & CPC", description: "Traffic cost", widget: "time-series" },
-                                { span: 6, id: "C2", title: "Conversion Rate", description: "Efficiency", widget: "time-series" }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: "S3",
-                    title: "Video Insights",
-                    description: "YouTube & Partner Performance",
-                    rows: [
-                        {
-                            id: "R1",
-                            hasDetails: true,
-                            cols: [
-                                { span: 10, id: "C1", title: "Video Retention", description: "Drop-off points", widget: "sankey" },
-                                {
-                                    span: 2,
-                                    id: "C2",
-                                    title: "Video Metrics",
-                                    description: "Key Stats",
-                                    widget: "scorecard-3up",
-                                    metrics: [
-                                        { title: "CPV", description: "Cost/View", value: "$0.04", change: "-2.1%" },
-                                        { title: "View Rate", description: "Engagement", value: "45%", change: "+1.5%" },
-                                        { title: "Completed Views", description: "100% Watched", value: "220K", change: null },
-                                    ]
-                                }
-                            ]
-                        },
-                    ]
-                },
-                {
-                    id: "S4",
-                    title: "Audience Segments",
-                    description: "Demographics & Interests",
-                    rows: [
-                        {
-                            id: "R1",
-                            hasDetails: true,
-                            cols: [
-                                { span: 4, id: "C1", title: "Segment Overlap", description: "Cross-targeting", widget: "venn" },
-                                { span: 8, id: "C2", title: "Top Segments", description: "Performance by group", widget: "cta" }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: "S5",
-                    title: "Brand Health",
-                    description: "Sentiment & Lift",
-                    rows: [
-                        {
-                            id: "R1",
-                            hasDetails: true,
-                            cols: [
-                                { span: 6, id: "C1", title: "Brand Lift", description: "Survey results", widget: "time-series" },
-                                { span: 6, id: "C2", title: "Sentiment Analysis", description: "Social listening", widget: "time-series" }
-                            ]
-                        }
-                    ]
-                }
-            ]
+        // =====================================================
+        // LABELS: Content per fidelity - titles, descriptions, metrics
+        // =====================================================
+        const LABELS = {
+            "No": {
+                "S1": { title: "Apple", description: "Crisp" },
+                "S1.R1.C1": { title: "Banana", description: "Yellow" },
+                "S1.R1.C2": { title: "Guava", description: "Tropical", metrics: [
+                    { title: "Huckleberry", description: "Blue", value: "456", change: "+8.2%" },
+                    { title: "Jackfruit", description: "Large", value: "789", change: "+3.1%" },
+                    { title: "Kiwi", description: "Fuzzy", value: "101", change: null }
+                ]},
+                "S1.R1.C3": { title: "Cranberry", description: "Crimson", metrics: [
+                    { title: "Durian", description: "Spiky", value: "123", change: "+1.2%" },
+                    { title: "Eggplant", description: "Purple veg", value: "1,234", change: "-5.1%" },
+                    { title: "Fig", description: "Sweet", value: "12,345", change: null }
+                ]},
+                "S1.R0.C1": { title: "Apricot", description: "Stone fruit" },
+                "S1.R0.C2": { title: "Blueberry", description: "Small berry" },
+                "S1.R0.C3": { title: "Cherry", description: "Red stone" },
+                "S1.R2.C1": { title: "Grape", description: "", metrics: [
+                    { title: "Jicama", description: "Crunchy root", value: "12,345", change: "+2.4%" },
+                    { title: "Kumquat", description: "Small citrus", value: "12,345", change: "+2.4%" }
+                ]},
+                "S1.R2.C2": { title: "Honeydew", description: "", metrics: [
+                    { title: "Lychee", description: "White fruit", value: "12,345", change: "+2.4%" },
+                    { title: "Mulberry", description: "Dark berry", value: "12,345", change: "+2.4%" }
+                ]},
+                "S1.R2.C3": { title: "Imli", description: "", metrics: [
+                    { title: "Nectarine", description: "Smooth skin", value: "12,345", change: "+2.4%" },
+                    { title: "Olive", description: "Salty fruit", value: "12,345", change: "+2.4%" }
+                ]},
+                "S2": { title: "Almond Joy", description: "Almonds & coconut" },
+                "S2.R1.C1": { title: "Butterfinger", description: "Crisp bar" },
+                "S2.R1.C2": { title: "Candy Cane", description: "Mint stick" },
+                "S3": { title: "Agua Fresca", description: "Refreshing beverages" },
+                "S3.R1.C1": { title: "Bellini", description: "Peach cocktail" },
+                "S3.R1.C2": { title: "Cider", description: "Apple brew", metrics: [
+                    { title: "Daiquiri", description: "Rum mix", value: "800", change: "-0.5%" },
+                    { title: "Espresso", description: "Dark shot", value: "1,500", change: "+1.0%" },
+                    { title: "Fanta", description: "Orange fizz", value: "100", change: null }
+                ]},
+                "S4": { title: "Anchovies", description: "Prepared dishes" },
+                "S4.R1.C1": { title: "Buñuelos", description: "Sweet fritter" },
+                "S4.R1.C2": { title: "Calzone", description: "Folded pizza" },
+                "S5": { title: "Avocado", description: "Green goodness" },
+                "S5.R1.C1": { title: "Engagement", description: "User actions" },
+                "S5.R1.C2": { title: "Sentiment", description: "Brand love" }
+            },
+            "Low": {
+                "S1": { title: "Return on investment", description: "See how your ads improve long term business outcomes" },
+                "S1.R1.C1": { title: "Ad reach per customer journey", description: "See how your ads reached each stage of the customer journey to influence brand perception and improve long term ROI" },
+                "S1.R1.C2": { title: "Outcome", description: "Qualified (likely) long term conversions", metrics: [
+                    { title: "Aware", description: "Qualified long term conv.", value: "+15%", change: "+2.0%" },
+                    { title: "Considering", description: "Qualified long term conv.", value: "+8%", change: "+1.1%" },
+                    { title: "Action", description: "Qualified long term conv.", value: "64%", change: null }
+                ]},
+                "S1.R1.C3": { title: "Journeys", description: "Ad influences on customer journeys", metrics: [
+                    { title: "Aware", description: "Unique Reach", value: "12,864", change: "+3.2%" },
+                    { title: "Considering", description: "Engaged Users", value: "6,282", change: "-1.5%" },
+                    { title: "Action", description: "Conversions", value: "2,884", change: null }
+                ]},
+                "S1.R0.C1": { title: "Device Mix", description: "Traffic by device" },
+                "S1.R0.C2": { title: "New vs Returning", description: "User type split" },
+                "S1.R0.C3": { title: "Top Locations", description: "Geo distribution" },
+                "S1.R2.C1": { title: "Awareness", description: "", metrics: [
+                    { title: "Impressions", description: "Total views", value: "1.2M", change: "+5.4%" },
+                    { title: "Unique Users", description: "Distinct people", value: "850K", change: "+2.1%" }
+                ]},
+                "S1.R2.C2": { title: "Consideration", description: "", metrics: [
+                    { title: "Views", description: "Video/Display", value: "450K", change: "+8.2%" },
+                    { title: "Branded Searches", description: "Intent", value: "125K", change: "+1.1%" }
+                ]},
+                "S1.R2.C3": { title: "Action", description: "", metrics: [
+                    { title: "Conversions", description: "Sales/Leads", value: "12,345", change: "+12.5%" },
+                    { title: "View-through Conv.", description: "Assisted", value: "3,210", change: "+4.3%" }
+                ]},
+                "S2": { title: "Campaign Performance", description: "Trends over time" },
+                "S2.R1.C1": { title: "Clicks & CPC", description: "Traffic cost" },
+                "S2.R1.C2": { title: "Conversion Rate", description: "Efficiency" },
+                "S3": { title: "Video Insights", description: "YouTube & Partner Performance" },
+                "S3.R1.C1": { title: "Video Retention", description: "Drop-off points" },
+                "S3.R1.C2": { title: "Video Metrics", description: "Key Stats", metrics: [
+                    { title: "CPV", description: "Cost/View", value: "$0.04", change: "-2.1%" },
+                    { title: "View Rate", description: "Engagement", value: "45%", change: "+1.5%" },
+                    { title: "Completed Views", description: "100% Watched", value: "220K", change: null }
+                ]},
+                "S4": { title: "Audience Segments", description: "Demographics & Interests" },
+                "S4.R1.C1": { title: "Segment Overlap", description: "Cross-targeting" },
+                "S4.R1.C2": { title: "Top Segments", description: "Performance by group" },
+                "S5": { title: "Brand Health", description: "Sentiment & Lift" },
+                "S5.R1.C1": { title: "Brand Lift", description: "Survey results" },
+                "S5.R1.C2": { title: "Sentiment Analysis", description: "Social listening" }
+            }
+        };
+        // High fidelity uses same labels as Low
+        LABELS["High"] = LABELS["Low"];
+
+        // =====================================================
+        // MERGE: Combines LAYOUT + LABELS into renderable config
+        // =====================================================
+        const buildConfig = (fidelity) => {
+            const labels = LABELS[fidelity] || LABELS["No"];
+            return {
+                sections: LAYOUT.sections.map(section => {
+                    const sectionLabels = labels[section.id] || {};
+                    return {
+                        ...section,
+                        title: sectionLabels.title || section.id,
+                        description: sectionLabels.description || "",
+                        rows: section.rows.map(row => ({
+                            ...row,
+                            cols: row.cols.map(col => {
+                                const colKey = `${section.id}.${row.id}.${col.id}`;
+                                const colLabels = labels[colKey] || {};
+                                return {
+                                    ...col,
+                                    title: colLabels.title || colKey,
+                                    description: colLabels.description ?? "",
+                                    metrics: colLabels.metrics || null
+                                };
+                            })
+                        }))
+                    };
+                })
+            };
         };
 
         // --- Components ---
@@ -1189,14 +1048,14 @@
         };
 
         const App = () => {
-            // Initialize with CONFIG_FRUITS (default No)
-            const [config, setConfig] = useState(CONFIG_FRUITS);
-            const [jsonInput, setJsonInput] = useState(JSON.stringify(CONFIG_FRUITS, null, 2));
-            const [error, setError] = useState(null);
-
             const [fidelity, setFidelity] = useState('No');
             const [isShiny, setIsShiny] = useState(false);
             const [showCheatCodes, setShowCheatCodes] = useState(false);
+
+            // Build config from LAYOUT + LABELS based on fidelity
+            const config = React.useMemo(() => buildConfig(fidelity), [fidelity]);
+            const [jsonInput, setJsonInput] = useState(JSON.stringify(LAYOUT, null, 2));
+            const [error, setError] = useState(null);
 
             // New state for dropdown and tab
             const [connectionType, setConnectionType] = useState('stand-alone');
@@ -1204,17 +1063,6 @@
 
             // New state for popover control
             const [popoverState, setPopoverState] = useState({ content: null, targetRef: null });
-
-            // Config Switching Effect
-            useEffect(() => {
-                if (fidelity === 'Low' || fidelity === 'High') {
-                    setConfig(CONFIG_REALISTIC);
-                    setJsonInput(JSON.stringify(CONFIG_REALISTIC, null, 2));
-                } else {
-                    setConfig(CONFIG_FRUITS); // Default/No
-                    setJsonInput(JSON.stringify(CONFIG_FRUITS, null, 2));
-                }
-            }, [fidelity]);
 
             const openPopover = (title, description, targetRef) => {
                 if (title && targetRef) {
