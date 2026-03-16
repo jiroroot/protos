@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Tasks">
+<title>Tasks</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro', system-ui, sans-serif;
+    background: #f2f2f7;
+    color: #1c1c1e;
+    min-height: 100dvh;
+    padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom) 0;
+  }
+  .header {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(242,242,247,0.85);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    padding: 60px 20px 16px;
+    border-bottom: 0.5px solid rgba(0,0,0,0.1);
+  }
+  .header .date { font-size: 13px; color: #8e8e93; text-transform: uppercase; letter-spacing: 0.5px; }
+  .header h1 { font-size: 28px; font-weight: 700; margin-top: 4px; }
+  .header .stats { font-size: 13px; color: #8e8e93; margin-top: 2px; }
+
+  .add-bar {
+    padding: 12px 16px;
+    display: flex; gap: 8px; align-items: center;
+  }
+  .add-bar input {
+    flex: 1; height: 44px; border-radius: 12px;
+    border: none; background: #fff;
+    padding: 0 16px; font-size: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    outline: none;
+  }
+  .add-bar input:focus { box-shadow: 0 0 0 2px #007aff; }
+  .add-btn {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: #007aff; color: #fff; border: none;
+    font-size: 24px; font-weight: 300;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; flex-shrink: 0;
+  }
+  .add-btn:active { background: #005ec4; transform: scale(0.95); }
+
+  .priority-bar {
+    display: flex; gap: 8px; padding: 0 16px 12px;
+  }
+  .pri-btn {
+    padding: 6px 14px; border-radius: 20px;
+    font-size: 13px; font-weight: 600; border: 1.5px solid;
+    cursor: pointer; transition: all 0.15s; background: transparent;
+  }
+  .pri-btn[data-p="high"] { color: #ff3b30; border-color: #ff3b30; }
+  .pri-btn[data-p="med"]  { color: #ff9500; border-color: #ff9500; }
+  .pri-btn[data-p="low"]  { color: #007aff; border-color: #007aff; }
+  .pri-btn.active { color: #fff; }
+  .pri-btn.active[data-p="high"] { background: #ff3b30; }
+  .pri-btn.active[data-p="med"]  { background: #ff9500; }
+  .pri-btn.active[data-p="low"]  { background: #007aff; }
+
+  .list { padding: 0 16px 100px; }
+  .section-label {
+    font-size: 13px; color: #8e8e93; text-transform: uppercase;
+    letter-spacing: 0.5px; font-weight: 600; margin: 20px 0 8px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .section-label button {
+    font-size: 13px; color: #ff3b30; background: none; border: none;
+    cursor: pointer; text-transform: none; letter-spacing: 0; font-weight: 400;
+  }
+
+  .task {
+    background: #fff; border-radius: 12px;
+    padding: 14px 16px; margin-bottom: 8px;
+    display: flex; align-items: center; gap: 12px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    transition: transform 0.1s;
+  }
+  .task:active { transform: scale(0.98); }
+  .task.done { opacity: 0.45; }
+
+  .check {
+    width: 24px; height: 24px; border-radius: 50%;
+    border: 2px solid #d1d1d6; background: none;
+    cursor: pointer; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; color: transparent; transition: all 0.15s;
+  }
+  .check.checked {
+    background: #34c759; border-color: #34c759; color: #fff;
+  }
+
+  .task-text { flex: 1; font-size: 15px; line-height: 1.3; min-width: 0; }
+  .task.done .task-text { text-decoration: line-through; color: #8e8e93; }
+
+  .pri-dot {
+    width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+  }
+  .pri-dot.high { background: #ff3b30; }
+  .pri-dot.med  { background: #ff9500; }
+  .pri-dot.low  { background: #007aff; }
+
+  .del-btn {
+    background: none; border: none; color: #d1d1d6;
+    font-size: 18px; cursor: pointer; padding: 4px;
+    flex-shrink: 0;
+  }
+  .del-btn:active { color: #ff3b30; }
+
+  .empty {
+    text-align: center; padding: 80px 20px;
+    color: #8e8e93; font-size: 15px;
+  }
+  .empty .icon { font-size: 48px; margin-bottom: 12px; }
+
+  @media (prefers-color-scheme: dark) {
+    body { background: #000; color: #f2f2f7; }
+    .header { background: rgba(0,0,0,0.85); border-color: rgba(255,255,255,0.1); }
+    .add-bar input { background: #1c1c1e; color: #f2f2f7; }
+    .task { background: #1c1c1e; }
+    .check { border-color: #48484a; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="date" id="dateEl"></div>
+  <h1>Tasks</h1>
+  <div class="stats" id="statsEl"></div>
+</div>
+
+<div class="add-bar">
+  <input type="text" id="input" placeholder="What needs to get done?" autocomplete="off">
+  <button class="add-btn" id="addBtn">+</button>
+</div>
+<div class="priority-bar">
+  <button class="pri-btn active" data-p="high">High</button>
+  <button class="pri-btn" data-p="med">Med</button>
+  <button class="pri-btn" data-p="low">Low</button>
+</div>
+
+<div class="list" id="list"></div>
+
+<script>
+const KEY = 'protos-tasks-v2';
+let tasks = JSON.parse(localStorage.getItem(KEY) || '[]');
+let priority = 'high';
+
+// Date
+const d = new Date();
+document.getElementById('dateEl').textContent = d.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' });
+
+// Priority buttons
+document.querySelectorAll('.pri-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.pri-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    priority = btn.dataset.p;
+  });
+});
+
+// Add task
+function addTask() {
+  const input = document.getElementById('input');
+  const text = input.value.trim();
+  if (!text) return;
+  tasks.unshift({ id: Date.now(), text, done: false, priority });
+  input.value = '';
+  save(); render();
+}
+document.getElementById('addBtn').addEventListener('click', addTask);
+document.getElementById('input').addEventListener('keydown', e => { if (e.key === 'Enter') addTask(); });
+
+function toggle(id) {
+  const t = tasks.find(t => t.id === id);
+  if (t) t.done = !t.done;
+  save(); render();
+}
+
+function del(id) {
+  tasks = tasks.filter(t => t.id !== id);
+  save(); render();
+}
+
+function clearDone() {
+  tasks = tasks.filter(t => !t.done);
+  save(); render();
+}
+
+function save() { localStorage.setItem(KEY, JSON.stringify(tasks)); }
+
+function render() {
+  const pending = tasks.filter(t => !t.done);
+  const done = tasks.filter(t => t.done);
+  document.getElementById('statsEl').textContent =
+    pending.length + ' pending' + (done.length ? ' · ' + done.length + ' done' : '');
+
+  let html = '';
+  if (!tasks.length) {
+    html = '<div class="empty"><div class="icon">🎯</div>No tasks yet. Add one above!</div>';
+  }
+
+  if (pending.length) {
+    pending.forEach(t => { html += taskHTML(t, false); });
+  }
+  if (done.length) {
+    html += '<div class="section-label">Completed <button onclick="clearDone()">Clear all</button></div>';
+    done.forEach(t => { html += taskHTML(t, true); });
+  }
+  document.getElementById('list').innerHTML = html;
+}
+
+function taskHTML(t, isDone) {
+  return `<div class="task ${isDone ? 'done' : ''}">
+    <button class="check ${isDone ? 'checked' : ''}" onclick="toggle(${t.id})">${isDone ? '✓' : ''}</button>
+    <div class="task-text">${esc(t.text)}</div>
+    <div class="pri-dot ${t.priority}"></div>
+    <button class="del-btn" onclick="del(${t.id})">×</button>
+  </div>`;
+}
+
+function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+render();
+</script>
+</body>
+</html>
